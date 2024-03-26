@@ -12,7 +12,7 @@ const Banner = () => {
             className="max-w-sm rounded-lg mix-blend-multiply h-[250px] md:h-[400px] w-auto"
           />
           <div className="space-y-5 lg:space-y-10">
-            <h1 className="text-3xl lg:text-[56px] font-bold">
+            <h1 className="text-3xl lg:text-5xl lg:leading-normal">
               Books to freshen up your bookshelf
             </h1>
 
