@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-playfair-display leading-normal;
+  }
+}
 /* Use a value from 400 to 900 */
 .playfair-display {
   font-family: "Playfair Display", serif;
