@@ -1,0 +1,90 @@
+// import PropTypes from "prop-types";
+import { useLoaderData, useParams } from "react-router-dom";
+
+const BookDetails = () => {
+  const books = useLoaderData();
+  //   console.log(books);
+  const { bookId } = useParams();
+  //   console.log(bookId);
+  const theBook = books.find((book) => book.bookId === parseInt(bookId));
+  //   console.log(theBook);
+  const {
+    bookName,
+    author,
+    image,
+    review,
+    totalPages,
+    rating,
+    category,
+    tags,
+    publisher,
+    yearOfPublishing,
+    fiction,
+  } = theBook;
+  return (
+    <>
+      <section
+        id="book-details"
+        className="flex flex-col lg:flex-row gap-8 my-12 *:flex-1"
+      >
+        <div className="bg-base-200 py-[75px] rounded-2xl flex">
+          <img
+            src={image}
+            alt={bookName}
+            className=" h-[350px] md:h-[450px] lg:h-[565px] mx-auto w-auto object-cover"
+          />
+        </div>
+        <div>
+          <h3 className="text-[40px] leading-normal mb-4">{bookName}</h3>
+          <p className="text-[#131313cc] font-medium text-xl">By : {author}</p>
+          <div className="py-4 border-y border-gray-400 my-6">
+            <p className="text-[#131313cc] text-xl font-medium">
+              {fiction ? "Fiction" : "Non-Fiction"}
+            </p>
+          </div>
+          <p>
+            <span className="font-semibold">Review :</span> {review}
+          </p>
+          <div className="flex gap-2 my-5">
+            <p className="font-bold mr-3">Tags</p>
+            {tags?.map((tag) => (
+              <p
+                key={tag}
+                className="text-[#23BE0A] bg-[#23be0a0d] px-2 py-1 cursor-pointer font-medium rounded-full"
+              >
+                {`#${tag}`}
+              </p>
+            ))}
+          </div>
+          <hr className="h-[1px] bg-gray-400" />
+          <div className="my-6 space-y-3">
+            <span className="flex items-center gap-2">
+              <p>Number of Pages:</p>
+              <p className="font-semibold">{totalPages}</p>
+            </span>
+            <span className="flex items-center gap-2">
+              <p>Publisher:</p>
+              <p className="font-semibold">{publisher}</p>
+            </span>
+            <span className="flex items-center gap-2">
+              <p>Year of Publishing:</p>
+              <p className="font-semibold">{yearOfPublishing}</p>
+            </span>
+            <span className="flex items-center gap-2">
+              <p>Rating:</p>
+              <p className="font-semibold">{rating}</p>
+            </span>
+          </div>
+          <div className="space-x-4">
+            <button className="btn btn-outline">Read</button>
+            <button className="btn bg-[#50B1C9] hover:bg-[#50B1C9] text-white">
+              Wishlist
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default BookDetails;

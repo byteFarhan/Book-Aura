@@ -2,20 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FaRegStar } from "react-icons/fa";
 const Book = ({ book }) => {
-  const {
-    bookId,
-    bookName,
-    author,
-    image,
-    review,
-    totalPages,
-    rating,
-    category,
-    tags,
-    publisher,
-    yearOfPublishing,
-    fiction,
-  } = book;
+  const { bookId, bookName, author, image, rating, tags, fiction } = book;
   return (
     <>
       <div>
