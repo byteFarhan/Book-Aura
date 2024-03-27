@@ -1,8 +1,9 @@
 // import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import useGetDataFromLocalStorage from "../../hooks/useGetDataFromLocalStorage";
 
-const BookDetails = () => {
+const Test = () => {
   const books = useLoaderData();
   //   console.log(books);
   const { bookId } = useParams();
@@ -14,20 +15,29 @@ const BookDetails = () => {
   //       localStorage;
   //     };
   //   }, []);
-  const getDataFromLocalStorage = (keyName) => {
-    const data = JSON.parse(localStorage.getItem(keyName));
-    if (data) {
-      return data;
-    }
-    return [];
-  };
-  const setBookToLocalStorage = (listName, bookId) => {
-    const listedBooks = getDataFromLocalStorage(listName);
+  // const getDataFromLocalStorage = (keyName) => {
+  //   const data = JSON.parse(localStorage.getItem(keyName));
+  //   if (data) {
+  //     return data;
+  //   }
+  //   return [];
+  // };
+  const [readBooks, setReadBooks] = useState([]);
+  const [wishList, setWishList] = useState([]);
+
+  console.log(previousListedReadBooks);
+  const previousListedWishListBooks = useGetDataFromLocalStorage("wishList");
+  console.log(previousListedWishListBooks);
+  const setBookToLocalStorage = (prevListedBooks, listName, bookId) => {
+    // const listedBooks = getDataFromLocalStorage(listName);
+    const listedBooks = [...prevListedBooks];
+    console.log(listedBooks);
     if (listedBooks.includes(parseInt(bookId))) {
       alert(`Book is already been added to ${listName}.`);
       return;
     }
     listedBooks.push(parseInt(bookId));
+
     // console.log(listedBooks);
     const listedBooksStringify = JSON.stringify(listedBooks);
     // console.log(listedBooksStringify);
@@ -35,14 +45,14 @@ const BookDetails = () => {
     alert(`Book has been added to ${listName}.`);
   };
   // const [count, setCount] = useState(0);
-  const handleRead = (id) => {
-    setBookToLocalStorage("readBooks", id);
-    // setCount(count + 1);
-  };
-  const handleWishlist = (id) => {
-    setBookToLocalStorage("wishList", id);
-    // setCount(count + 1);
-  };
+  // const handleRead = (prevListedBooks, id) => {
+  //   setBookToLocalStorage(prevListedBooks, "readBooks", id);
+  //   // setCount(count + 1);
+  // };
+  // const handleWishlist = (prevListedBooks, id) => {
+  //   setBookToLocalStorage(prevListedBooks, "wishList", id);
+  //   // setCount(count + 1);
+  // };
   const {
     bookName,
     author,
@@ -115,13 +125,25 @@ const BookDetails = () => {
           </div>
           <div className="space-x-4">
             <button
-              onClick={() => handleRead(bookId)}
+              onClick={() =>
+                setBookToLocalStorage(
+                  previousListedReadBooks,
+                  "readBooks",
+                  bookId
+                )
+              }
               className="btn btn-outline"
             >
               Read
             </button>
             <button
-              onClick={() => handleWishlist(bookId)}
+              onClick={() =>
+                setBookToLocalStorage(
+                  previousListedWishListBooks,
+                  "wishList",
+                  bookId
+                )
+              }
               className="btn bg-[#50B1C9] hover:bg-[#50B1C9] text-white"
             >
               Wishlist
@@ -133,4 +155,4 @@ const BookDetails = () => {
   );
 };
 
-export default BookDetails;
+export default Test;
