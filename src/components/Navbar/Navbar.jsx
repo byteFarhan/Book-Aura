@@ -17,11 +17,6 @@ const Navbar = () => {
       </li>
     </>
   );
-  //   const navLinks = (
-  //     <>
-  //       <RouteStyle to={"/"}>Home</RouteStyle>
-  //     </>
-  //   );
   return (
     <>
       <div className="navbar bg-base-100">

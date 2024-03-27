@@ -30,7 +30,7 @@ const Book = ({ book }) => {
                 <h2 className="text-2xl font-bold">{bookName}</h2>
               </div>
               <p>By: {author}</p>
-              <div className="flex justify-between mt-10">
+              <div className="flex justify-between font-medium mt-5 pt-5 border-t border-dashed border-[#13131326]">
                 <span>{fiction ? "Fiction" : "Non-Fiction"}</span>
                 <span className="flex items-center gap-1">
                   <p>{rating}</p>
