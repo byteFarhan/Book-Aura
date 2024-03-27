@@ -1,4 +1,5 @@
 // import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 
 const BookDetails = () => {
@@ -8,6 +9,40 @@ const BookDetails = () => {
   //   console.log(bookId);
   const theBook = books.find((book) => book.bookId === parseInt(bookId));
   //   console.log(theBook);
+  //   useEffect(() => {
+  //     const handleRead = (id) => {
+  //       localStorage;
+  //     };
+  //   }, []);
+  const getDataFromLocalStorage = (keyName) => {
+    const data = JSON.parse(localStorage.getItem(keyName));
+    if (data) {
+      return data;
+    }
+    return [];
+  };
+  const setBookToLocalStorage = (listName, bookId) => {
+    const listedBooks = getDataFromLocalStorage(listName);
+    if (!listedBooks.includes(parseInt(bookId))) {
+      listedBooks.push(parseInt(bookId));
+    } else {
+      alert(`Book is already been added to ${listName}.`);
+      return;
+    }
+    // console.log(listedBooks);
+    const listedBooksStringify = JSON.stringify(listedBooks);
+    // console.log(listedBooksStringify);
+    localStorage.setItem(listName, listedBooksStringify);
+  };
+  const [count, setCount] = useState(0);
+  const handleRead = (id) => {
+    setBookToLocalStorage("readBooks", id);
+    setCount(count + 1);
+  };
+  const handleWishlist = (id) => {
+    setBookToLocalStorage("wishList", id);
+    setCount(count + 1);
+  };
   const {
     bookName,
     author,
@@ -35,7 +70,10 @@ const BookDetails = () => {
           />
         </div>
         <div>
-          <h3 className="text-[40px] leading-normal mb-4">{bookName}</h3>
+          {/* <h3 className="text-3xl">{count}</h3> */}
+          <h3 className=" text-3xl md:text-4xl lg:text-[40px] leading-normal mb-4">
+            {bookName}
+          </h3>
           <p className="text-[#131313cc] font-medium text-xl">By : {author}</p>
           <div className="py-4 border-y border-gray-400 my-6">
             <p className="text-[#131313cc] text-xl font-medium">
@@ -76,8 +114,16 @@ const BookDetails = () => {
             </span>
           </div>
           <div className="space-x-4">
-            <button className="btn btn-outline">Read</button>
-            <button className="btn bg-[#50B1C9] hover:bg-[#50B1C9] text-white">
+            <button
+              onClick={() => handleRead(bookId)}
+              className="btn btn-outline"
+            >
+              Read
+            </button>
+            <button
+              onClick={() => handleWishlist(bookId)}
+              className="btn bg-[#50B1C9] hover:bg-[#50B1C9] text-white"
+            >
               Wishlist
             </button>
           </div>
