@@ -3,27 +3,29 @@ import RouteStyle from "./RouteStyle";
 const Navbar = () => {
   const navItems = (
     <>
-      <li>
-        <RouteStyle routeName={"Home"} routePath={"/"}>
-          Home
-        </RouteStyle>
+      <li className="">
+        <RouteStyle routeName={"Home"} routePath={"/"} />
       </li>
-      <li>
-        <RouteStyle routeName={"Home"} routePath={"/"}>
-          Home
-        </RouteStyle>
+      <li className="">
+        <RouteStyle routeName={"Listed Books"} routePath={"/listed-books"} />
       </li>
-      <li>
-        <RouteStyle routeName={"Home"} routePath={"/"}>
-          Home
-        </RouteStyle>
+      <li className="">
+        <RouteStyle routeName={"Pages to Read"} routePath={"/page-to-read"} />
+      </li>
+      <li className="">
+        <RouteStyle routeName={"Blogs"} routePath={"/blogs"} />
       </li>
     </>
   );
+  //   const navLinks = (
+  //     <>
+  //       <RouteStyle to={"/"}>Home</RouteStyle>
+  //     </>
+  //   );
   return (
     <>
-      <nav className="navbar bg-base-100">
-        <div className="navbar-start">
+      <div className="navbar bg-base-100">
+        <div className="md:navbar-start flex justify-between w-full">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -48,15 +50,22 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a href="/" className="font-bold text-2xl">
+            Book Aura
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navItems}</ul>
+          <ul className="menu menu-horizontal gap-3 px-1">{navItems}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end space-x-4 hidden md:flex">
+          <a className="btn bg-[#23BE0A] hover:bg-[#23BE0A] text-white">
+            Sign In
+          </a>
+          <a className="btn bg-[#59C6D2] hover:bg-[#59C6D2] text-white">
+            Sign Up
+          </a>
         </div>
-      </nav>
+      </div>
     </>
   );
 };
