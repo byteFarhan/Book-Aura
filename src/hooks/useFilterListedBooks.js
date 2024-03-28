@@ -5,7 +5,7 @@ const useFilterListedBooks = (arrOfListedIds, books) => {
   }
   for (const book of books) {
     const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
-    console.log(isBookListed);
+    // console.log(isBookListed);
     if (isBookListed) {
       filteredBooks.push(book);
     }

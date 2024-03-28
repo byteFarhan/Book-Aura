@@ -14,7 +14,7 @@ import {
 import useFilterListedBooks from "../../hooks/useFilterListedBooks";
 const PagesToRead = () => {
   const books = useLoaderData();
-  console.log(books);
+  //console.log(books);
   const [storedReadBooksId, setStoredReadBooksId] = useState([]);
   const getDataFromLocalStorage = (keyName) => {
     const data = JSON.parse(localStorage.getItem(keyName));
@@ -29,7 +29,7 @@ const PagesToRead = () => {
   }, []);
 
   const readBooks = useFilterListedBooks(storedReadBooksId, books);
-  console.log(readBooks);
+  //console.log(readBooks);
   const makeChartdata = (books) => {
     const data = [];
     for (const book of books) {
@@ -46,7 +46,7 @@ const PagesToRead = () => {
     return data;
   };
   const data = makeChartdata(readBooks);
-  console.log(data);
+  //console.log(data);
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
   // const data2 = [
@@ -112,7 +112,7 @@ const PagesToRead = () => {
   };
 
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex items-center justify-center p-6 mb-10 lg:p-10 bg-base-200 rounded-2xl">
       {/* <ResponsiveContainer width="100%" height="100%"> */}
       <BarChart
         width={1000}

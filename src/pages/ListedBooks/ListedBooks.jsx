@@ -21,15 +21,32 @@ const ListedBooks = () => {
     }
     return [];
   };
+  // const filterListedBooks = (arrOfListedIds, books) => {
+  //   const filteredBooks = [];
+  //   if (!arrOfListedIds.length) {
+  //     return filteredBooks;
+  //   }
+  //   for (const book of books) {
+  //     const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
+  //     // console.log(isBookListed);
+  //     if (isBookListed) {
+  //       filteredBooks.push(book);
+  //     }
+  //   }
+  //   return filteredBooks;
+  // };
   useEffect(() => {
     const newReadBooks = getDataFromLocalStorage("readBooks");
     setStoredReadBooksId(newReadBooks);
+    // const readListDefault = filterListedBooks(storedReadBooksId, books);
+    // setReadList(readListDefault);
   }, []);
-  console.log("readBooks", storedReadBooksId);
+  //console.log("readBooks", storedReadBooksId);
   useEffect(() => {
     const newWishList = getDataFromLocalStorage("wishList");
     setStoredWishListId(newWishList);
   }, []);
+
   // const newReadBooks = getDataFromLocalStorage("readBooks");
   // setStoredReadBooksId(newReadBooks);
   // const newWishList = getDataFromLocalStorage("wishList");
@@ -43,8 +60,19 @@ const ListedBooks = () => {
   // useEffect(() => {
   //   setWishList(wishListDefault);
   // }, [wishListDefault]);
-  console.log("filteredReadList", readListDefault);
-  console.log("filteredWishList", wishListDefault);
+  //console.log("filteredReadList", readListDefault);
+  //console.log("filteredWishList", wishListDefault);
+  const handleSortByRating = (defltReadListedBooks, defltWishListedBooks) => {
+    // Sort by rating
+    const sortByRatingReadList = defltReadListedBooks
+      .slice()
+      .sort((a, b) => b.rating - a.rating);
+    const sortByRatingWishList = defltWishListedBooks
+      .slice()
+      .sort((a, b) => b.rating - a.rating);
+    console.log("sortByRatingReadList", sortByRatingReadList);
+    console.log("sortByRatingWishList", sortByRatingWishList);
+  };
   return (
     <section id="listed-books">
       <div className="py-6 rounded-2xl bg-base-200">
@@ -57,7 +85,9 @@ const ListedBooks = () => {
           </summary>
           <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             <li>
-              <a>Publisher year</a>
+              <a onClick={() => handleSortByRating(readList, wishListDefault)}>
+                Rating
+              </a>
             </li>
             <li>
               <a>Number of pages</a>

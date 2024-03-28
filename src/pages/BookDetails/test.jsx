@@ -25,13 +25,13 @@ const Test = () => {
   const [readBooks, setReadBooks] = useState([]);
   const [wishList, setWishList] = useState([]);
 
-  console.log(previousListedReadBooks);
+  //console.log(previousListedReadBooks);
   const previousListedWishListBooks = useGetDataFromLocalStorage("wishList");
-  console.log(previousListedWishListBooks);
+  //console.log(previousListedWishListBooks);
   const setBookToLocalStorage = (prevListedBooks, listName, bookId) => {
     // const listedBooks = getDataFromLocalStorage(listName);
     const listedBooks = [...prevListedBooks];
-    console.log(listedBooks);
+    // console.log(listedBooks);
     if (listedBooks.includes(parseInt(bookId))) {
       alert(`Book is already been added to ${listName}.`);
       return;
@@ -60,7 +60,6 @@ const Test = () => {
     review,
     totalPages,
     rating,
-    category,
     tags,
     publisher,
     yearOfPublishing,
