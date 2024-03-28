@@ -4,10 +4,13 @@ import { useLoaderData, useParams } from "react-router-dom";
 
 const BookDetails = () => {
   const books = useLoaderData();
-  //   console.log(books);
+  // console.log(books);
   const { bookId } = useParams();
   //   console.log(bookId);
-  const theBook = books.find((book) => book.bookId === parseInt(bookId));
+  let theBook = [];
+  if (books.length) {
+    theBook = books.find((book) => book.bookId === parseInt(bookId));
+  }
   //   console.log(theBook);
   //   useEffect(() => {
   //     const handleRead = (id) => {
@@ -23,8 +26,19 @@ const BookDetails = () => {
   };
   const setBookToLocalStorage = (listName, bookId) => {
     const listedBooks = getDataFromLocalStorage(listName);
+    const readBookInLocalStorage = getDataFromLocalStorage("readBooks");
+    if (listName === "wishList") {
+      if (readBookInLocalStorage.includes(parseInt(bookId))) {
+        alert(`Book is already been added to Read Books!`);
+        return;
+      }
+    }
     if (listedBooks.includes(parseInt(bookId))) {
-      alert(`Book is already been added to ${listName}.`);
+      alert(
+        `Book is already been added to ${
+          listName === "readBooks" ? "Read Books" : "Wishlist Books"
+        }.`
+      );
       return;
     }
     listedBooks.push(parseInt(bookId));
@@ -32,7 +46,11 @@ const BookDetails = () => {
     const listedBooksStringify = JSON.stringify(listedBooks);
     // console.log(listedBooksStringify);
     localStorage.setItem(listName, listedBooksStringify);
-    alert(`Book has been added to ${listName}.`);
+    alert(
+      `Book has been added to ${
+        listName === "readBooks" ? "Read Books" : "Wishlist Books"
+      }.`
+    );
   };
   // const [count, setCount] = useState(0);
   const handleRead = (id) => {

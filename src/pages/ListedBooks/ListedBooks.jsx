@@ -14,22 +14,6 @@ const ListedBooks = () => {
   const [readList, setReadList] = useState([]);
   const [wishList, setWishList] = useState([]);
 
-  //   const readBooks = books.filter(book=> )
-  // const filterListedBooks = (arrOfListedIds, listedBooks) => {
-  //   const filteredBooks = [];
-  //   if (!arrOfListedIds.length) {
-  //     return filteredBooks;
-  //   }
-  //   for (const book of listedBooks) {
-  //     const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
-  //     console.log(isBookListed);
-  //     if (isBookListed) {
-  //       filteredBooks.push(book);
-  //     }
-  //   }
-  //   return filteredBooks;
-  // };
-
   const getDataFromLocalStorage = (keyName) => {
     const data = JSON.parse(localStorage.getItem(keyName));
     if (data) {
@@ -46,6 +30,10 @@ const ListedBooks = () => {
     const newWishList = getDataFromLocalStorage("wishList");
     setStoredWishListId(newWishList);
   }, []);
+  // const newReadBooks = getDataFromLocalStorage("readBooks");
+  // setStoredReadBooksId(newReadBooks);
+  // const newWishList = getDataFromLocalStorage("wishList");
+  // setStoredWishListId(newWishList);
   console.log("wishList", storedWishListId);
   const readList2 = useFilterListedBooks(storedReadBooksId, books);
   const wishList2 = useFilterListedBooks(storedWishListId, books);

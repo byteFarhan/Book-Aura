@@ -28,7 +28,7 @@ const ListedBook = ({ book }) => {
         <h1 className="text-2xl">{book?.bookName}</h1>
         <p className="font-medium">By : {author}</p>
         <div className="flex flex-col gap-6 md:flex-row">
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <p className="mr-3 font-bold">Tags</p>
             {tags?.map((tag) => (
               <p
