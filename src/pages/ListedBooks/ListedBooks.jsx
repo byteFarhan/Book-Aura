@@ -4,27 +4,31 @@ import { useLoaderData } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ListedBook from "./ListedBook/ListedBook";
+import useFilterListedBooks from "../../hooks/useFilterListedBooks";
 
 const ListedBooks = () => {
   const books = useLoaderData();
   //   console.log(books);
   const [storedReadBooksId, setStoredReadBooksId] = useState([]);
   const [storedWishListId, setStoredWishListId] = useState([]);
+  const [readList, setReadList] = useState([]);
+  const [wishList, setWishList] = useState([]);
+
   //   const readBooks = books.filter(book=> )
-  const filterListedBooks = (arrOfListedIds, listedBooks) => {
-    const filteredBooks = [];
-    if (!arrOfListedIds.length) {
-      return filteredBooks;
-    }
-    for (const book of listedBooks) {
-      const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
-      console.log(isBookListed);
-      if (isBookListed) {
-        filteredBooks.push(book);
-      }
-    }
-    return filteredBooks;
-  };
+  // const filterListedBooks = (arrOfListedIds, listedBooks) => {
+  //   const filteredBooks = [];
+  //   if (!arrOfListedIds.length) {
+  //     return filteredBooks;
+  //   }
+  //   for (const book of listedBooks) {
+  //     const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
+  //     console.log(isBookListed);
+  //     if (isBookListed) {
+  //       filteredBooks.push(book);
+  //     }
+  //   }
+  //   return filteredBooks;
+  // };
 
   const getDataFromLocalStorage = (keyName) => {
     const data = JSON.parse(localStorage.getItem(keyName));
@@ -43,10 +47,10 @@ const ListedBooks = () => {
     setStoredWishListId(newWishList);
   }, []);
   console.log("wishList", storedWishListId);
-  const readList = filterListedBooks(storedReadBooksId, books);
-  const wishList = filterListedBooks(storedWishListId, books);
-  console.log("filteredReadList", readList);
-  console.log("filteredWishList", wishList);
+  const readList2 = useFilterListedBooks(storedReadBooksId, books);
+  const wishList2 = useFilterListedBooks(storedWishListId, books);
+  console.log("filteredReadList", readList2);
+  console.log("filteredWishList", wishList2);
   return (
     <section id="listed-books">
       <div className="py-6 rounded-2xl bg-base-200">
@@ -77,14 +81,14 @@ const ListedBooks = () => {
             <Tab>Wishlist Books</Tab>
           </TabList>
           <TabPanel>
-            {readList?.length &&
-              readList?.map((book) => (
+            {readList2?.length &&
+              readList2?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
               ))}
           </TabPanel>
           <TabPanel>
-            {wishList?.length &&
-              wishList?.map((book) => (
+            {wishList2?.length &&
+              wishList2?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
               ))}
           </TabPanel>

@@ -8,15 +8,12 @@ const ListedBook = ({ book }) => {
     bookName,
     author,
     image,
-    review,
     totalPages,
     rating,
     category,
     tags,
     publisher,
     yearOfPublishing,
-    fiction,
-    page,
   } = book;
   return (
     <div className="p-6 rounded-2xl border border-[#13131326] my-6 flex flex-col lg:flex-row gap-6">
@@ -54,7 +51,7 @@ const ListedBook = ({ book }) => {
           </p>
           <p className="flex items-center gap-2">
             <FaRegFileAlt />
-            Page: {page}
+            Page: {totalPages}
           </p>
         </div>
         <div className="flex flex-wrap gap-6 *:p-2 *:px-4 *:rounded-full border-t border-dashed border-[#13131326] pt-4 mt-4">

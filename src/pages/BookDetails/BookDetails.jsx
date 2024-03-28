@@ -50,7 +50,6 @@ const BookDetails = () => {
     review,
     totalPages,
     rating,
-    category,
     tags,
     publisher,
     yearOfPublishing,
