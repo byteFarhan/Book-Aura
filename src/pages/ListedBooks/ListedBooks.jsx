@@ -69,16 +69,30 @@ const ListedBooks = () => {
             <Tab>Wishlist Books</Tab>
           </TabList>
           <TabPanel>
-            {readList2?.length &&
+            {readList2?.length ? (
               readList2?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
-              ))}
+              ))
+            ) : (
+              <div className="flex items-center justify-center h-96">
+                <h3 className="text-2xl text-center md:text-3xl font-work-sans">
+                  No book has been listed yet!
+                </h3>
+              </div>
+            )}
           </TabPanel>
           <TabPanel>
-            {wishList2?.length &&
+            {wishList2?.length ? (
               wishList2?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
-              ))}
+              ))
+            ) : (
+              <div className="flex items-center justify-center h-96">
+                <h3 className="text-2xl text-center md:text-3xl font-work-sans">
+                  No book has been listed yet!
+                </h3>
+              </div>
+            )}
           </TabPanel>
         </Tabs>
       </div>
