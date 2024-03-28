@@ -35,10 +35,16 @@ const ListedBooks = () => {
   // const newWishList = getDataFromLocalStorage("wishList");
   // setStoredWishListId(newWishList);
   // console.log("wishList", storedWishListId);
-  const readList2 = useFilterListedBooks(storedReadBooksId, books);
-  const wishList2 = useFilterListedBooks(storedWishListId, books);
-  console.log("filteredReadList", readList2);
-  console.log("filteredWishList", wishList2);
+  const readListDefault = useFilterListedBooks(storedReadBooksId, books);
+  // useEffect(() => {
+  //   setReadList(readListDefault);
+  // }, [readListDefault]);
+  const wishListDefault = useFilterListedBooks(storedWishListId, books);
+  // useEffect(() => {
+  //   setWishList(wishListDefault);
+  // }, [wishListDefault]);
+  console.log("filteredReadList", readListDefault);
+  console.log("filteredWishList", wishListDefault);
   return (
     <section id="listed-books">
       <div className="py-6 rounded-2xl bg-base-200">
@@ -69,8 +75,8 @@ const ListedBooks = () => {
             <Tab>Wishlist Books</Tab>
           </TabList>
           <TabPanel>
-            {readList2?.length ? (
-              readList2?.map((book) => (
+            {readListDefault?.length ? (
+              readListDefault?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
               ))
             ) : (
@@ -82,8 +88,8 @@ const ListedBooks = () => {
             )}
           </TabPanel>
           <TabPanel>
-            {wishList2?.length ? (
-              wishList2?.map((book) => (
+            {wishListDefault?.length ? (
+              wishListDefault?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
               ))
             ) : (

@@ -6,7 +6,7 @@ const Blogs = () => {
 
   console.log(blogs);
   return (
-    <section id="blogs">
+    <section id="blogs" className="mb-10">
       {blogs?.length &&
         blogs?.map((blog) => <Blog key={blog.id} blog={blog} />)}
     </section>

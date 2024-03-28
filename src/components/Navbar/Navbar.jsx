@@ -15,6 +15,9 @@ const Navbar = () => {
       <li className="">
         <RouteStyle routeName={"Blogs"} routePath={"/blogs"} />
       </li>
+      <li className="">
+        <RouteStyle routeName={"About Us"} routePath={"/about-us"} />
+      </li>
     </>
   );
   return (

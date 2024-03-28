@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from "recharts";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 import useFilterListedBooks from "../../hooks/useFilterListedBooks";
 const PagesToRead = () => {
   const books = useLoaderData();
@@ -27,7 +37,8 @@ const PagesToRead = () => {
         bookName: `${book.bookName.split(" ")[0]} ${
           book.bookName.split(" ")[1]
         }...`,
-        bookName2: book.bookName.split(" ")[1],
+        // bookName2: book.bookName.split(" ")[1],
+        // bookName: book.bookName,
         totalPages: book.totalPages,
       };
       data.push(item);
@@ -102,6 +113,7 @@ const PagesToRead = () => {
 
   return (
     <section className="flex items-center justify-center">
+      {/* <ResponsiveContainer width="100%" height="100%"> */}
       <BarChart
         width={1000}
         height={700}
@@ -116,6 +128,8 @@ const PagesToRead = () => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="bookName" />
         <YAxis />
+        {/* <Tooltip /> */}
+        {/* <Legend /> */}
         <Bar
           dataKey="totalPages"
           fill="#8884d8"
@@ -127,6 +141,7 @@ const PagesToRead = () => {
           ))}
         </Bar>
       </BarChart>
+      {/* </ResponsiveContainer> */}
     </section>
   );
 };

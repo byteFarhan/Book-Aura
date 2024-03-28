@@ -5,7 +5,7 @@ import {
 } from "react-icons/io5";
 
 const Blog = ({ blog }) => {
-  const { id, title, content, publish_date, author } = blog;
+  const { title, content, publish_date, author } = blog;
   return (
     <div className="p-6 space-y-4">
       <h3 className="text-2xl lg:text-3xl">{title}</h3>
@@ -17,7 +17,7 @@ const Blog = ({ blog }) => {
           <IoCalendarNumberOutline /> Publish Date: {publish_date}
         </p>
       </div>
-      <hr className="h-[2px] bg-slate-900" />
+      <hr className="h-[2px] bg-slate-900 rounded-full" />
       <ul className="ml-6 space-y-3 list-disc">
         {content?.map((item, idx) => (
           <li key={idx}>
