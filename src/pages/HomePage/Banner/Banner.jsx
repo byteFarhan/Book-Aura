@@ -4,9 +4,9 @@ const Banner = () => {
     <>
       <section
         id="banner"
-        className="hero bg-base-200 p-10 lg:px-28 lg:py-20 rounded-3xl mt-12"
+        className="p-10 hero bg-base-200 lg:px-28 lg:py-20 rounded-3xl"
       >
-        <div className="hero-content flex-col lg:flex-row-reverse gap-10">
+        <div className="flex-col gap-10 hero-content lg:flex-row-reverse">
           <img
             src="./banner-img.png"
             className="max-w-sm rounded-lg mix-blend-multiply h-[250px] md:h-[400px] w-auto"

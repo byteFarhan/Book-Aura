@@ -19,13 +19,13 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100">
-        <div className="md:navbar-start flex justify-between w-full">
+      <nav className="mt-5 navbar bg-base-100 mb-11">
+        <div className="flex justify-between w-full md:navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="w-5 h-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -45,14 +45,14 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <a href="/" className="font-bold text-2xl">
+          <a href="/" className="text-2xl font-bold">
             Book Aura
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal gap-3 px-1">{navItems}</ul>
+        <div className="hidden navbar-center lg:flex">
+          <ul className="gap-3 px-1 menu menu-horizontal">{navItems}</ul>
         </div>
-        <div className="navbar-end space-x-4 hidden md:flex">
+        <div className="hidden space-x-4 navbar-end md:flex">
           <a className="btn bg-[#23BE0A] hover:bg-[#23BE0A] text-white">
             Sign In
           </a>
@@ -60,7 +60,7 @@ const Navbar = () => {
             Sign Up
           </a>
         </div>
-      </div>
+      </nav>
     </>
   );
 };

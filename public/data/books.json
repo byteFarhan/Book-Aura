@@ -11,7 +11,8 @@
     "tags": ["Epic", "Dragons"],
     "publisher": "Tor Books",
     "yearOfPublishing": 2018,
-    "fiction": true
+    "fiction": true,
+    "page": 255
   },
   {
     "bookId": 2,
@@ -25,7 +26,8 @@
     "tags": ["Legal", "Texas"],
     "publisher": "Texas Family Law Foundation",
     "yearOfPublishing": 2019,
-    "fiction": false
+    "fiction": false,
+    "page": 334
   },
   {
     "bookId": 3,
@@ -39,7 +41,8 @@
     "tags": ["Communication", "Relationships"],
     "publisher": "Harmony",
     "yearOfPublishing": 2017,
-    "fiction": false
+    "fiction": false,
+    "page": 230
   },
   {
     "bookId": 4,
@@ -53,7 +56,8 @@
     "tags": ["Christianity", "Apologetics"],
     "publisher": "David C. Cook",
     "yearOfPublishing": 2013,
-    "fiction": false
+    "fiction": false,
+    "page": 180
   },
   {
     "bookId": 5,
@@ -67,7 +71,8 @@
     "tags": ["Dating", "Men's Health"],
     "publisher": "CreateSpace Independent Publishing Platform",
     "yearOfPublishing": 2015,
-    "fiction": false
+    "fiction": false,
+    "page": 679
   },
   {
     "bookId": 6,
@@ -81,7 +86,8 @@
     "tags": ["Scholarships", "Planning"],
     "publisher": "Scholarship Planner Co.",
     "yearOfPublishing": 2020,
-    "fiction": false
+    "fiction": false,
+    "page": 576
   },
   {
     "bookId": 7,
@@ -95,7 +101,8 @@
     "tags": ["Social Issues", "Race"],
     "publisher": "Balzer + Bray",
     "yearOfPublishing": 2017,
-    "fiction": true
+    "fiction": true,
+    "page": 458
   },
   {
     "bookId": 8,
@@ -109,7 +116,8 @@
     "tags": ["Drama", "Social Justice"],
     "publisher": "J.B. Lippincott & Co.",
     "yearOfPublishing": 1960,
-    "fiction": false
+    "fiction": true,
+    "page": 768
   },
   {
     "bookId": 9,
@@ -123,6 +131,7 @@
     "tags": ["Wealth", "Investing"],
     "publisher": "Rethink Press",
     "yearOfPublishing": 2021,
-    "fiction": false
+    "fiction": false,
+    "page": 465
   }
 ]

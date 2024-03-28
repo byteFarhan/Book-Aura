@@ -75,7 +75,7 @@ const BookDetails = () => {
             {bookName}
           </h3>
           <p className="text-[#131313cc] font-medium text-xl">By : {author}</p>
-          <div className="py-4 my-6 border-gray-400 border-y">
+          <div className="py-4 my-6 border-[#13131326] border-y">
             <p className="text-[#131313cc] text-xl font-medium">
               {fiction ? "Fiction" : "Non-Fiction"}
             </p>

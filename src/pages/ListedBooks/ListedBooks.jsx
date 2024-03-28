@@ -1,3 +1,4 @@
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -48,24 +49,47 @@ const ListedBooks = () => {
   console.log("filteredWishList", wishList);
   return (
     <section id="listed-books">
-      <Tabs>
-        <TabList>
-          <Tab>Read</Tab>
-          <Tab>Wish List</Tab>
-        </TabList>
-        <TabPanel>
-          {readList?.length &&
-            readList?.map((book) => (
-              <ListedBook key={book?.bookId} book={book} />
-            ))}
-        </TabPanel>
-        <TabPanel>
-          {wishList?.length &&
-            wishList?.map((book) => (
-              <ListedBook key={book?.bookId} book={book} />
-            ))}
-        </TabPanel>
-      </Tabs>
+      <div className="py-6 rounded-2xl bg-base-200">
+        <h3 className="text-3xl text-center font-work-sans">Books</h3>
+      </div>
+      <div className="mt-8 mb-10 text-center">
+        <details className="text-2xl dropdown">
+          <summary className="flex items-center m-1 btn bg-[#23BE0A] hover:bg-[#23BE0A] text-white">
+            Sort By <MdOutlineKeyboardArrowDown className="text-2xl" />
+          </summary>
+          <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+            <li>
+              <a>Publisher year</a>
+            </li>
+            <li>
+              <a>Number of pages</a>
+            </li>
+            <li>
+              <a>Publisher year</a>
+            </li>
+          </ul>
+        </details>
+      </div>
+      <div>
+        <Tabs>
+          <TabList>
+            <Tab>Read Books</Tab>
+            <Tab>Wishlist Books</Tab>
+          </TabList>
+          <TabPanel>
+            {readList?.length &&
+              readList?.map((book) => (
+                <ListedBook key={book?.bookId} book={book} />
+              ))}
+          </TabPanel>
+          <TabPanel>
+            {wishList?.length &&
+              wishList?.map((book) => (
+                <ListedBook key={book?.bookId} book={book} />
+              ))}
+          </TabPanel>
+        </Tabs>
+      </div>
     </section>
   );
 };
