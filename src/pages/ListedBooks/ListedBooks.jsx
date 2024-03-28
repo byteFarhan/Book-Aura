@@ -34,7 +34,7 @@ const ListedBooks = () => {
   // setStoredReadBooksId(newReadBooks);
   // const newWishList = getDataFromLocalStorage("wishList");
   // setStoredWishListId(newWishList);
-  console.log("wishList", storedWishListId);
+  // console.log("wishList", storedWishListId);
   const readList2 = useFilterListedBooks(storedReadBooksId, books);
   const wishList2 = useFilterListedBooks(storedWishListId, books);
   console.log("filteredReadList", readList2);
