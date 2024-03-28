@@ -9,8 +9,8 @@ import useFilterListedBooks from "../../hooks/useFilterListedBooks";
 const ListedBooks = () => {
   const books = useLoaderData();
   //   console.log(books);
-  const [storedReadBooksId, setStoredReadBooksId] = useState([]);
-  const [storedWishListId, setStoredWishListId] = useState([]);
+  // const [storedReadBooksId, setStoredReadBooksId] = useState([]);
+  // const [storedWishListId, setStoredWishListId] = useState([]);
   const [readList, setReadList] = useState([]);
   const [wishList, setWishList] = useState([]);
 
@@ -21,58 +21,109 @@ const ListedBooks = () => {
     }
     return [];
   };
-  // const filterListedBooks = (arrOfListedIds, books) => {
-  //   const filteredBooks = [];
-  //   if (!arrOfListedIds.length) {
-  //     return filteredBooks;
-  //   }
-  //   for (const book of books) {
-  //     const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
-  //     // console.log(isBookListed);
-  //     if (isBookListed) {
-  //       filteredBooks.push(book);
-  //     }
-  //   }
-  //   return filteredBooks;
-  // };
+  const filterListedBooks = (arrOfListedIds, books) => {
+    const filteredBooks = [];
+    if (!arrOfListedIds.length) {
+      return filteredBooks;
+    }
+    for (const book of books) {
+      const isBookListed = arrOfListedIds.find((id) => id === book.bookId);
+      // console.log(isBookListed);
+      if (isBookListed) {
+        filteredBooks.push(book);
+      }
+    }
+    return filteredBooks;
+  };
+  // let storedReadBooksIds = getDataFromLocalStorage("readBooks");
+  // let storedWishListIds = getDataFromLocalStorage("wishList");
+  // console.log("storedReadBooksIds", storedReadBooksIds);
+  // console.log("storedWishListIds", storedWishListIds);
   useEffect(() => {
-    const newReadBooks = getDataFromLocalStorage("readBooks");
-    setStoredReadBooksId(newReadBooks);
-    // const readListDefault = filterListedBooks(storedReadBooksId, books);
-    // setReadList(readListDefault);
-  }, []);
+    const storedReadBooksIds = getDataFromLocalStorage("readBooks");
+    setReadList(filterListedBooks(storedReadBooksIds, books));
+    // setReadList(readBooks);
+  }, [books]);
   //console.log("readBooks", storedReadBooksId);
   useEffect(() => {
-    const newWishList = getDataFromLocalStorage("wishList");
-    setStoredWishListId(newWishList);
-  }, []);
-
-  // const newReadBooks = getDataFromLocalStorage("readBooks");
-  // setStoredReadBooksId(newReadBooks);
-  // const newWishList = getDataFromLocalStorage("wishList");
-  // setStoredWishListId(newWishList);
+    const storedWishListIds = getDataFromLocalStorage("wishList");
+    setWishList(filterListedBooks(storedWishListIds, books));
+    // setWishList(wishList);
+  }, [books]);
   // console.log("wishList", storedWishListId);
-  const readListDefault = useFilterListedBooks(storedReadBooksId, books);
+  // setReadList(useFilterListedBooks(storedReadBooksIds, books));
+  // console.log(readList);
   // useEffect(() => {
-  //   setReadList(readListDefault);
-  // }, [readListDefault]);
-  const wishListDefault = useFilterListedBooks(storedWishListId, books);
-  // useEffect(() => {
-  //   setWishList(wishListDefault);
-  // }, [wishListDefault]);
+  // }, [storedWishListIds, books]);
+  // setWishList(useFilterListedBooks(storedWishListIds, books));
+  // console.log(wishList);
+  // const readListDefault = useFilterListedBooks(storedReadBooksIds, books);
+  // const wishListDefault = useFilterListedBooks(storedWishListIds, books);
+
   //console.log("filteredReadList", readListDefault);
   //console.log("filteredWishList", wishListDefault);
-  const handleSortByRating = (defltReadListedBooks, defltWishListedBooks) => {
-    // Sort by rating
-    const sortByRatingReadList = defltReadListedBooks
+  //Functionallity for Sort Books
+  const handleSort = (
+    readListedBooks,
+    wishListedBooks,
+    sortBy = "totalPages"
+  ) => {
+    const sortedReadList = readListedBooks
       .slice()
-      .sort((a, b) => b.rating - a.rating);
-    const sortByRatingWishList = defltWishListedBooks
+      .sort((a, b) => b[sortBy] - a[sortBy]);
+    const sortedWishList = wishListedBooks
       .slice()
-      .sort((a, b) => b.rating - a.rating);
-    console.log("sortByRatingReadList", sortByRatingReadList);
-    console.log("sortByRatingWishList", sortByRatingWishList);
+      .sort((a, b) => b[sortBy] - a[sortBy]);
+    console.log(`sortBy${sortBy}ReadList`, sortedReadList);
+    console.log(`sortBy${sortBy}WishList`, sortedWishList);
+    setReadList(sortedReadList);
+    setWishList(sortedWishList);
   };
+  // //Functionallity for Sort by rating
+  // const handleSortByRating = (defltReadListedBooks, defltWishListedBooks) => {
+  //   const sortByRatingReadList = defltReadListedBooks
+  //     .slice()
+  //     .sort((a, b) => b.rating - a.rating);
+  //   const sortByRatingWishList = defltWishListedBooks
+  //     .slice()
+  //     .sort((a, b) => b.rating - a.rating);
+  //   console.log("sortByRatingReadList", sortByRatingReadList);
+  //   console.log("sortByRatingWishList", sortByRatingWishList);
+  // };
+  // //Functionallity for Sort by Published Year
+  // const handleSortByPublishedYear = (
+  //   defltReadListedBooks,
+  //   defltWishListedBooks
+  // ) => {
+  //   const sortByYearOfPublishingReadList = defltReadListedBooks
+  //     .slice()
+  //     .sort((a, b) => b.yearOfPublishing - a.yearOfPublishing);
+  //   const sortByYearOfPublishingWishList = defltWishListedBooks
+  //     .slice()
+  //     .sort((a, b) => b.yearOfPublishing - a.yearOfPublishing);
+  //   console.log(
+  //     "sortByYearOfPublishingReadList",
+  //     sortByYearOfPublishingReadList
+  //   );
+  //   console.log(
+  //     "sortByYearOfPublishingWishList",
+  //     sortByYearOfPublishingWishList
+  //   );
+  // };
+  // //Functionallity for Sort by Total Pages
+  // const handleSortByTotalPages = (
+  //   defltReadListedBooks,
+  //   defltWishListedBooks
+  // ) => {
+  //   const SortByReadingListTotalPages = defltReadListedBooks
+  //     .slice()
+  //     .sort((a, b) => b.totalPages - a.totalPages);
+  //   const SortByWishListTotalPages = defltWishListedBooks
+  //     .slice()
+  //     .sort((a, b) => b.totalPages - a.totalPages);
+  //   console.log("SortByReadingListTotalPages", SortByReadingListTotalPages);
+  //   console.log("SortByWishListTotalPages", SortByWishListTotalPages);
+  // };
   return (
     <section id="listed-books">
       <div className="py-6 rounded-2xl bg-base-200">
@@ -85,15 +136,23 @@ const ListedBooks = () => {
           </summary>
           <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             <li>
-              <a onClick={() => handleSortByRating(readList, wishListDefault)}>
+              <a onClick={() => handleSort(readList, wishList, "rating")}>
                 Rating
               </a>
             </li>
             <li>
-              <a>Number of pages</a>
+              <a onClick={() => handleSort(readList, wishList, "totalPages")}>
+                Number of pages
+              </a>
             </li>
             <li>
-              <a>Publisher year</a>
+              <a
+                onClick={() =>
+                  handleSort(readList, wishList, "yearOfPublishing")
+                }
+              >
+                Publisher year
+              </a>
             </li>
           </ul>
         </details>
@@ -105,8 +164,8 @@ const ListedBooks = () => {
             <Tab>Wishlist Books</Tab>
           </TabList>
           <TabPanel>
-            {readListDefault?.length ? (
-              readListDefault?.map((book) => (
+            {readList?.length ? (
+              readList?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
               ))
             ) : (
@@ -118,8 +177,8 @@ const ListedBooks = () => {
             )}
           </TabPanel>
           <TabPanel>
-            {wishListDefault?.length ? (
-              wishListDefault?.map((book) => (
+            {wishList?.length ? (
+              wishList?.map((book) => (
                 <ListedBook key={book?.bookId} book={book} />
               ))
             ) : (
